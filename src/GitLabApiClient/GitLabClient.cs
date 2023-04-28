@@ -68,6 +68,7 @@ namespace GitLabApiClient
             Users = new UsersClient(_httpFacade);
             Groups = new GroupsClient(_httpFacade, groupsQueryBuilder, projectsGroupsQueryBuilder, projectMilestonesQueryBuilder, groupLabelsQueryBuilder);
             Branches = new BranchClient(_httpFacade, branchQueryBuilder);
+            ForkClient = new ForkClient(_httpFacade);
             Releases = new ReleaseClient(_httpFacade, releaseQueryBuilder);
             Tags = new TagClient(_httpFacade, tagQueryBuilder);
             Webhooks = new WebhookClient(_httpFacade);
@@ -116,6 +117,8 @@ namespace GitLabApiClient
         /// Access GitLab's branches API.
         /// </summary>
         public IBranchClient Branches { get; }
+
+        public IForkClient ForkClient { get; }
 
         /// <summary>
         /// Access GitLab's release API.

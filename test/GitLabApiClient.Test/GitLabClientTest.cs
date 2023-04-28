@@ -1,7 +1,9 @@
 using System;
+using Ductus.FluentDocker.Commands;
 using FluentAssertions;
 using GitLabApiClient.Internal.Http;
 using GitLabApiClient.Internal.Http.Serialization;
+using GitLabApiClient.Internal.Paths;
 using GitLabApiClient.Models.Oauth.Requests;
 using GitLabApiClient.Models.Users.Responses;
 using GitLabApiClient.Test.Utilities;
@@ -30,6 +32,19 @@ namespace GitLabApiClient.Test
                 .Throw<ArgumentException>()
                 .WithMessage("Unsupported authentication token provide, please private an oauth or private token");
         }
+
+
+        [Fact]
+        public void Fork()
+        {
+            var client = new GitLabClient("http://10.255.134.203:8081", "glpat-PRVXVfx9YFm_4vB9ZKej");
+            ProjectId sut = "gongyouliang/springboot-demo";
+            client.ForkClient.CreateAsync(sut, new Models.Branches.Requests.CreateForkRequest("test", "", ""));
+        }
+
+
+
+
 
         [Fact]
         public void CheckClients()
